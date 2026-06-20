@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Bell, Search, TriangleAlert, Scissors, Activity } from 'lucide-react';
+import { Bell, Search, TriangleAlert, Scissors, Activity, PanelLeftClose, PanelLeftOpen, Menu } from 'lucide-react';
 import { activityLogs, disturbances, pruningTasks } from '../../services/api';
 
 const BREADCRUMBS = {
@@ -17,7 +17,7 @@ const BREADCRUMBS = {
   '/settings': { title: 'Settings', crumb: 'Profil Pengguna' },
 };
 
-export default function Topbar() {
+export default function Topbar({ sidebarOpen, sidebarCollapsed, onToggleSidebar, onToggleDesktopSidebar }) {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const basePath = '/' + (location.pathname.split('/')[1] || '');
@@ -58,24 +58,42 @@ export default function Topbar() {
   }, [activityLogs.length, disturbances.length, pruningTasks.length]);
 
   return (
-    <header className="h-[56px] bg-white border-b border-slate-200 flex justify-between items-center px-5 z-40 shrink-0">
-      <div className="flex items-center gap-3 min-w-0">
-        <h2 className="text-[18px] font-bold text-slate-900 whitespace-nowrap">{meta.title}</h2>
-        <div className="h-5 w-[1px] bg-slate-200 shrink-0" />
-        <div className="text-[11px] text-slate-500 font-medium flex items-center gap-1.5 min-w-0">
+    <header className="min-h-[64px] bg-white border-b border-slate-200 flex flex-wrap justify-between items-center gap-3 px-4 py-3 md:px-5 z-40 shrink-0">
+      <div className="flex min-w-0 items-center gap-3">
+        <button
+          type="button"
+          onClick={onToggleSidebar}
+          className="rounded-xl border border-slate-200 p-2 text-slate-600 transition-colors hover:bg-slate-50 lg:hidden"
+          aria-label={sidebarOpen ? 'Tutup sidebar' : 'Buka sidebar'}
+        >
+          <Menu size={18} />
+        </button>
+        <button
+          type="button"
+          onClick={onToggleDesktopSidebar}
+          className="hidden rounded-xl border border-slate-200 p-2 text-slate-600 transition-colors hover:bg-slate-50 lg:inline-flex"
+          aria-label={sidebarCollapsed ? 'Tampilkan sidebar' : 'Sembunyikan sidebar'}
+        >
+          {sidebarCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+        </button>
+        <div className="min-w-0">
+          <h2 className="truncate text-[16px] font-bold text-slate-900 md:text-[18px]">{meta.title}</h2>
+        </div>
+        <div className="hidden h-5 w-[1px] shrink-0 bg-slate-200 md:block" />
+        <div className="hidden min-w-0 items-center gap-1.5 text-[11px] font-medium text-slate-500 md:flex">
           <span>Infranexia FiberOps</span>
           <span className="text-slate-300">/</span>
           <span className="text-brand-600 font-bold truncate">{meta.crumb}</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="relative">
+      <div className="flex w-full items-center justify-end gap-3 sm:w-auto">
+        <div className="relative hidden sm:block">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             placeholder="Cari data..."
-            className="pl-9 pr-4 py-1.5 border border-slate-200 rounded-xl text-sm w-48 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-slate-50"
+            className="w-44 rounded-xl border border-slate-200 bg-slate-50 py-1.5 pl-9 pr-4 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500 md:w-48"
           />
         </div>
         <div className="relative">
