@@ -19,13 +19,13 @@ export default function AppLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-50 lg:flex">
+    <div className="min-h-dvh w-full max-w-full overflow-x-hidden bg-slate-50 lg:flex lg:h-screen">
       <Sidebar
         open={sidebarOpen}
         collapsed={sidebarCollapsed}
         onClose={() => setSidebarOpen(false)}
       />
-      <div className="flex min-h-screen min-w-0 flex-1 flex-col overflow-x-hidden">
+      <div className="flex min-h-dvh min-w-0 flex-1 flex-col overflow-x-hidden lg:h-full">
         <Topbar
           sidebarOpen={sidebarOpen}
           sidebarCollapsed={sidebarCollapsed}

@@ -52,7 +52,7 @@ export default function Sidebar({ open, collapsed, onClose }) {
       <aside
         className={`fixed inset-y-0 left-0 z-50 flex h-full flex-col bg-gradient-to-b from-[#24456d] via-[#16365a] to-[#07172d] pt-3 pb-6 shadow-[0_24px_64px_rgba(3,10,25,0.35)] transition-all duration-300 lg:static lg:translate-x-0 lg:shadow-none ${
           collapsed ? 'lg:w-[92px]' : 'lg:w-[260px]'
-        } ${open ? 'translate-x-0' : '-translate-x-full'} w-[280px]`}
+        } ${open ? 'translate-x-0' : '-translate-x-full'} w-[min(18rem,calc(100vw-0.75rem))] max-w-[18rem]`}
       >
         <div className="mb-3 flex items-center justify-end px-4 lg:hidden">
           <button
