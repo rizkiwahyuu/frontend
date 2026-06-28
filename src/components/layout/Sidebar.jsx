@@ -30,7 +30,43 @@ const operatorMenu = [
   { to: '/settings', icon: Settings, label: 'Profil' },
 ];
 
-const LOGO_URL = '/infranexia-logo.svg';
+function InfranexiaLogo({ compact = false }) {
+  return (
+    <svg
+      viewBox={compact ? '0 0 160 160' : '0 0 620 160'}
+      role="img"
+      aria-label="Logo Infranexia"
+      className={`block object-contain drop-shadow-[0_10px_22px_rgba(6,20,44,0.24)] transition-all duration-300 ${
+        compact ? 'h-16 w-16 lg:h-14 lg:w-14' : 'h-20 w-full max-w-[290px] sm:h-24'
+      }`}
+    >
+      <defs>
+        <linearGradient id="sidebar-brand" x1="18" y1="18" x2="138" y2="142" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#67E8F9" />
+          <stop offset="0.55" stopColor="#3B82F6" />
+          <stop offset="1" stopColor="#1D4ED8" />
+        </linearGradient>
+      </defs>
+      <g fill="none" stroke="url(#sidebar-brand)" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M31 79c0-27 22-49 49-49s49 22 49 49-22 49-49 49-49-22-49-49Z" strokeWidth="12" />
+        <path d="m50 105 30-52 30 52M58 91h44" strokeWidth="10" />
+        <circle cx="80" cy="52" r="8" fill="#60A5FA" stroke="none" />
+        <circle cx="49" cy="105" r="8" fill="#22D3EE" stroke="none" />
+        <circle cx="111" cy="105" r="8" fill="#2563EB" stroke="none" />
+      </g>
+      {!compact && (
+        <>
+          <text x="158" y="87" fill="#F8FAFC" fontFamily="Arial, Helvetica, sans-serif" fontSize="55" fontWeight="800" letterSpacing="3">
+            INFRANEXIA
+          </text>
+          <text x="161" y="119" fill="#BAE6FD" fontFamily="Arial, Helvetica, sans-serif" fontSize="18" fontWeight="700" letterSpacing="9">
+            FIBER NETWORK
+          </text>
+        </>
+      )}
+    </svg>
+  );
+}
 
 export default function Sidebar({ open, collapsed, onClose }) {
   const user = useAuthStore((s) => s.user);
@@ -66,11 +102,7 @@ export default function Sidebar({ open, collapsed, onClose }) {
 
         <div className={`mx-4 mb-4 rounded-[1.6rem] border border-white/20 bg-gradient-to-b from-[#8ea9c8]/55 via-[#5e7fa6]/34 to-white/[0.06] px-3 py-3 shadow-[0_20px_44px_rgba(3,10,25,0.28)] backdrop-blur-sm sm:mb-6 ${collapsed ? 'lg:px-1' : ''}`}>
           <div className="flex items-center justify-center -mb-1">
-            <img
-              src={LOGO_URL}
-              alt="Infranexia"
-              className={`object-contain drop-shadow-[0_10px_22px_rgba(6,20,44,0.24)] transition-all duration-300 ${collapsed ? 'h-16 w-16 lg:h-14 lg:w-14' : 'h-20 w-full max-w-[290px] sm:h-24'}`}
-            />
+            <InfranexiaLogo compact={collapsed} />
           </div>
           <div className={`mt-0 text-center ${collapsed ? 'lg:hidden' : ''}`}>
             <p className="text-[12px] font-bold uppercase tracking-[0.34em] text-sky-50">FiberOps</p>
