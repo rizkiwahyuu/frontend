@@ -30,7 +30,7 @@ const operatorMenu = [
   { to: '/settings', icon: Settings, label: 'Profil' },
 ];
 
-const LOGO_URL = 'https://i.ibb.co/fGPMjTJ4/Infranexia-Primary-2-1.png';
+const LOGO_URL = '/infranexia-logo.svg';
 
 export default function Sidebar({ open, collapsed, onClose }) {
   const user = useAuthStore((s) => s.user);
@@ -50,9 +50,9 @@ export default function Sidebar({ open, collapsed, onClose }) {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex h-full flex-col bg-gradient-to-b from-[#24456d] via-[#16365a] to-[#07172d] pt-3 pb-6 shadow-[0_24px_64px_rgba(3,10,25,0.35)] transition-all duration-300 lg:static lg:translate-x-0 lg:shadow-none ${
+        className={`fixed inset-y-0 left-0 z-50 flex h-screen h-[100dvh] max-h-[100dvh] flex-col overflow-hidden bg-gradient-to-b from-[#24456d] via-[#16365a] to-[#07172d] pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_24px_64px_rgba(3,10,25,0.35)] transition-all duration-300 lg:static lg:h-full lg:max-h-none lg:min-h-full lg:translate-x-0 lg:pb-6 lg:pt-3 lg:shadow-none ${
           collapsed ? 'lg:w-[92px]' : 'lg:w-[260px]'
-        } ${open ? 'translate-x-0' : '-translate-x-full'} w-[min(18rem,calc(100vw-0.75rem))] max-w-[18rem]`}
+        } ${open ? 'translate-x-0' : '-translate-x-full'} w-[calc(100vw-0.75rem)] max-w-none sm:w-[22rem] lg:max-w-[260px]`}
       >
         <div className="mb-3 flex items-center justify-end px-4 lg:hidden">
           <button
@@ -64,12 +64,12 @@ export default function Sidebar({ open, collapsed, onClose }) {
           </button>
         </div>
 
-        <div className={`mx-4 mb-6 rounded-[1.6rem] border border-white/20 bg-gradient-to-b from-[#8ea9c8]/55 via-[#5e7fa6]/34 to-white/[0.06] px-2 py-2 shadow-[0_20px_44px_rgba(3,10,25,0.28)] backdrop-blur-sm ${collapsed ? 'lg:px-1' : ''}`}>
+        <div className={`mx-4 mb-4 rounded-[1.6rem] border border-white/20 bg-gradient-to-b from-[#8ea9c8]/55 via-[#5e7fa6]/34 to-white/[0.06] px-3 py-3 shadow-[0_20px_44px_rgba(3,10,25,0.28)] backdrop-blur-sm sm:mb-6 ${collapsed ? 'lg:px-1' : ''}`}>
           <div className="flex items-center justify-center -mb-1">
             <img
               src={LOGO_URL}
               alt="Infranexia"
-              className={`object-contain drop-shadow-[0_10px_22px_rgba(6,20,44,0.24)] transition-all duration-300 ${collapsed ? 'h-16 w-16 lg:h-14 lg:w-14' : 'h-24 w-full max-w-[220px]'}`}
+              className={`object-contain drop-shadow-[0_10px_22px_rgba(6,20,44,0.24)] transition-all duration-300 ${collapsed ? 'h-16 w-16 lg:h-14 lg:w-14' : 'h-20 w-full max-w-[290px] sm:h-24'}`}
             />
           </div>
           <div className={`mt-0 text-center ${collapsed ? 'lg:hidden' : ''}`}>
@@ -77,7 +77,7 @@ export default function Sidebar({ open, collapsed, onClose }) {
           </div>
         </div>
 
-        <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
+        <nav className="min-h-0 flex-1 space-y-0.5 overflow-y-auto overscroll-contain px-3">
           {menu.map((item, i) => {
             if (item.divider) {
               return (

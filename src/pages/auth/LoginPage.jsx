@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
 import { AlertTriangle, Eye, EyeOff } from 'lucide-react';
 
-const LOGO_URL = 'https://i.ibb.co/fGPMjTJ4/Infranexia-Primary-2-1.png';
+const LOGO_URL = '/infranexia-mark.svg';
 
 export default function LoginPage() {
   const login = useAuthStore((s) => s.login);

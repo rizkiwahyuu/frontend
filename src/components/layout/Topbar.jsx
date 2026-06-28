@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Bell, Search, TriangleAlert, Scissors, Activity, PanelLeftClose, PanelLeftOpen, Menu } from 'lucide-react';
 import { activityLogs, disturbances, pruningTasks } from '../../services/api';
 
-const LOGO_URL = 'https://i.ibb.co/fGPMjTJ4/Infranexia-Primary-2-1.png';
+const LOGO_URL = '/infranexia-mark.svg';
 
 const BREADCRUMBS = {
   '/': { title: 'Dasbor', crumb: 'Dasbor' },
